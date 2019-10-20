@@ -1,0 +1,26 @@
+.container {
+    margin: 10% auto 4% auto;
+    width: 595px;
+    text-align: center;
+    background-color: lightgrey;
+    padding: 15px;
+}
+
+footer{
+    text-align: center;
+}
+
+#timer-div {
+    background-color: lightblue;
+    text-align: center;
+}
+
+#question-div {
+    background-color: lightgreen;
+    text-align: center;
+}
+
+#answers-div {
+    text-align: center;
+    background-color: lightyellow;   
+}
