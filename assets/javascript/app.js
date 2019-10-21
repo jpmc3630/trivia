@@ -24,30 +24,41 @@ $( document ).ready(function() {
     //Begin
     function Begin(){
 
-        //Load Question 1
-        for (let i = 0; i < Q.length; i++) {
+        
+
+        
         // let currentQ = 0;
-        $("#question-div").html(Q[i].question);
 
         // Give 10 seconds 
         let clock = setInterval(timedFunction, 1000);
         let time = 9;
+        i = 0;
         
-        
+       
+       
+
         function timedFunction (){
-            
+
+            $('#question-div').html(Q[i].question);
+            if (time > -1) {
             $('#timer-div').html('00:0' + time);
+            };
             time--;
             
             if (time < 0) {
-                clearInterval(clock);
-                $('footer').text('You are out of time!');
+                //load next question!
+                
+                $('footer').text('You are out of time! Next Question in ' + (time+4) +  ' seconds ...');
+                
+                if (time < -3) {
+                    $('footer').text('');
+                    i++
+                    $('#question-div').html(Q[i].question);
+                    time = 9;
+                    $('#timer-div').html('00:10');
+                }
             };
         };
-
-    }
-    
-        //Wait for user input
 
     };
 
