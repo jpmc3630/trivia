@@ -10,6 +10,11 @@ footer{
     text-align: center;
 }
 
+.answer-button {
+    margin: 0 0 10px 0;
+    width: 95%;
+}
+
 #timer-div {
     background-color: lightblue;
     text-align: center;
@@ -18,9 +23,11 @@ footer{
 #question-div {
     background-color: lightgreen;
     text-align: center;
+
 }
 
 #answers-div {
     text-align: center;
     background-color: lightyellow;   
+    padding: 10px 0 0 0;
 }
