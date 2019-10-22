@@ -1,9 +1,14 @@
 
 //global variables
 
+
+//set time limit per question in seconds
+const qTimeLimit = 10;
+const waitTimeLimit = 5;
+
 let Q;
-let qTime = 5;
-let waitTime = 3;
+let qTime = qTimeLimit;
+let waitTime = waitTimeLimit;
 
 let qCount = 0;
 let timeoutTally = 0;
@@ -66,15 +71,17 @@ $( document ).ready(function() {
     
         if ($(this).text() == Q[qCount].correct_answer) {
             clearInterval(qClock);
+            clearInterval(wait);
             correctTally++;
-            waitTime = 3;
+            waitTime = waitTimeLimit;
             waitScreenText =  "You are correct!";
             wait = setInterval(waitTimeFunction, 1000);
 
         } else {
             clearInterval(qClock);
+            clearInterval(wait);
             incorrectTally++;
-            waitTime = 3;
+            waitTime = waitTimeLimit;
             waitScreenText =  "You are incorrect!";
             wait = setInterval(waitTimeFunction, 1000);
         };
@@ -95,8 +102,8 @@ $( document ).ready(function() {
     function Game(){
    
 
-        qTime = 5;
-        waitTime = 3;
+        qTime = qTimeLimit;
+        waitTime = waitTimeLimit;
         qCount = 0;
 
         timeoutTally = 0;
@@ -125,10 +132,12 @@ $( document ).ready(function() {
         if (qTime > 0) {
             qTime--;
             $('#timer-div').html('00:0' + qTime);
-        } else {
+        };
+        
+        if (qTime <= 0) {
             clearInterval(qClock);
             timeoutTally++;
-            waitTime = 3;
+            waitTime = waitTimeLimit;
             waitScreenText =  "You have timed out!";
             wait = setInterval(waitTimeFunction, 1000);
             
@@ -158,7 +167,7 @@ $( document ).ready(function() {
         $('#wait-screen').css('display', 'block');
         waitTime--;
 
-        if (waitTime < 0) {
+        if (waitTime <= 0) {
             
             nextQuestion(); 
             
@@ -177,7 +186,7 @@ $( document ).ready(function() {
             shuffleAnswers();
             
             
-            qTime = 5;
+            qTime = qTimeLimit;
             $('#timer-div').html('00:0' + qTime);
             
             qClock = setInterval (qTimeFunction, 1000);
@@ -190,7 +199,8 @@ $( document ).ready(function() {
     };
 
     function resultsScreen() {
-
+        // $('#results-screen').css('height') playing with height - set to height of main screen
+        
         $('#results-screen').html(`
         <br>Quiz Complete!
         <br>You Scored:
@@ -202,12 +212,6 @@ $( document ).ready(function() {
         `);
         
         $('#results-screen').css('display', 'block');
-
-
-
     };
-
-
-
 
 });
