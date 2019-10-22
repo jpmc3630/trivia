@@ -18,6 +18,7 @@ footer{
 #timer-div {
     background-color: lightblue;
     text-align: center;
+    height: 25px;
 }
 
 #question-div {
@@ -30,4 +31,36 @@ footer{
     text-align: center;
     background-color: lightyellow;   
     padding: 10px 0 0 0;
+}
+
+#wait-screen {
+    margin: 10% auto 4% auto;
+    height: 300px;
+    position: relative;
+    top: -410px;
+
+    width: 595px;
+    text-align: center;
+    background-color: lightgrey;
+    padding: 15px;
+    display: none;
+
+}
+
+#wait-screen-reason {
+    display: block;
+}
+
+#results-screen {
+    margin: 10% auto 4% auto;
+    height: 300px;
+    position: relative;
+    top: -410px;
+
+    width: 595px;
+    text-align: center;
+    background-color: lightgrey;
+    padding: 15px;
+    display: none;
+
 }
