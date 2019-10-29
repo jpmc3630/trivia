@@ -26,24 +26,50 @@ let waitScreenText = "";
 //doc ready
 $( document ).ready(function() {
     
+    ReloadQuestions();
 
-    function restart() {
+    function ReloadQuestions() {
 
-            // grab questions from API
+    // grab questions from API and store in Q object then proceed to start game function
     $.ajax({
         url: `https://opentdb.com/api.php?amount=10&type=multiple`,
         method: "GET"
     }).then(function(response){
-        
+       
         Q = response.results;
+        
+        $('.start-button').css('display', 'block');
 
-        Game();
+        // StartGame();
         
     });
+    };
+    
+
+
+    // (re)start game function
+    function StartGame(){
+
+
+        qTime = qTimeLimit;
+        waitTime = waitTimeLimit;
+        qCount = 0;
+
+        timeoutTally = 0;
+        correctTally = 0;
+        incorrectTally = 0;
+        answerList = [];
+        waitScreenText = "";
+
+        shuffleAnswers();
+        $('#question-div').html(Q[qCount].question);
+
+        qClock = setInterval(qTimeFunction, 1000);
+
 
     };
     
-    
+
     
     function shuffleAnswers() {
 
@@ -88,42 +114,18 @@ $( document ).ready(function() {
     });
 
     // on click for PLAY AGAIN button
-    $('body').on ("click", ".restart-button", function() {
+    $('body').on ("click", ".start-button", function() {
         
-        restart();
+        StartGame();
         $('#results-screen').css('display', 'none');
+        $('.start-button').css('display', 'none');
     });
 
 
     
 
 
-    // (re)start game function
-    function Game(){
-   
 
-        qTime = qTimeLimit;
-        waitTime = waitTimeLimit;
-        qCount = 0;
-
-        timeoutTally = 0;
-        correctTally = 0;
-        incorrectTally = 0;
-        answerList = [];
-        waitScreenText = "";
-
-        shuffleAnswers();
-        $('#question-div').html(Q[qCount].question);
-
-        qClock = setInterval(qTimeFunction, 1000);
-        
-
-        
-       
-
-
-
-    };
 
 
     function qTimeFunction (){
@@ -193,6 +195,7 @@ $( document ).ready(function() {
 
         } else {
             
+            ReloadQuestions();
             resultsScreen();
 
         };
@@ -208,7 +211,7 @@ $( document ).ready(function() {
         <br>Incorrect: ${incorrectTally}
         <br>Timeouts: ${timeoutTally}
         <br>
-        <button class="restart-button btn-info btn-sm">Play Again</button>
+        <button class="start-button btn-info btn-sm">Play Again</button>
         `);
         
         $('#results-screen').css('display', 'block');
