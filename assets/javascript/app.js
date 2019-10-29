@@ -4,11 +4,11 @@
 
 //set time limit per question in seconds
 const qTimeLimit = 10;
-const waitTimeLimit = 5;
+const waitTimeLimit = 3;
 
 let Q;
 let qTime = qTimeLimit;
-let waitTime = waitTimeLimit;
+let waitTime = waitTimeLimit -1;
 
 let qCount = 0;
 let timeoutTally = 0;
@@ -52,7 +52,7 @@ $( document ).ready(function() {
 
 
         qTime = qTimeLimit;
-        waitTime = waitTimeLimit;
+        waitTime = waitTimeLimit - 1;
         qCount = 0;
 
         timeoutTally = 0;
@@ -64,8 +64,9 @@ $( document ).ready(function() {
         shuffleAnswers();
         $('#question-div').html(Q[qCount].question);
 
+        $('#timer-div').html('<h2>00:' + qTime + '</h2>');
         qClock = setInterval(qTimeFunction, 1000);
-
+        
 
     };
     
@@ -101,7 +102,7 @@ $( document ).ready(function() {
             correctTally++;
             waitTime = waitTimeLimit;
             waitScreenText =  "You are correct!";
-            wait = setInterval(waitTimeFunction, 1000);
+            
 
         } else {
             clearInterval(qClock);
@@ -109,8 +110,11 @@ $( document ).ready(function() {
             incorrectTally++;
             waitTime = waitTimeLimit;
             waitScreenText =  "You are incorrect!";
-            wait = setInterval(waitTimeFunction, 1000);
+            
         };
+
+        showWaitScreen();
+
     });
 
     // on click for PLAY AGAIN button
@@ -119,6 +123,7 @@ $( document ).ready(function() {
         StartGame();
         $('#results-screen').css('display', 'none');
         $('.start-button').css('display', 'none');
+        
     });
 
 
@@ -130,25 +135,54 @@ $( document ).ready(function() {
 
     function qTimeFunction (){
             
+
+        qTime--;
+        $('#timer-div').html('<h2>00:0' + qTime + '</h2>');
         console.log('qTime: ' + qTime);
         if (qTime > 0) {
-            qTime--;
-            $('#timer-div').html('00:0' + qTime);
+
         };
         
-        if (qTime <= 0) {
+        if (qTime < 0) {
             clearInterval(qClock);
             timeoutTally++;
             waitTime = waitTimeLimit;
             waitScreenText =  "You have timed out!";
-            wait = setInterval(waitTimeFunction, 1000);
+            // wait = setInterval(waitTimeFunction, 1000);
             
+            showWaitScreen();
+
             // $('footer').text('You are out of time! Next Question in ' + (waitTime+1) +  ' seconds ...');
         };
         
     };
 
 
+    // wait screen appears
+    function showWaitScreen() {
+
+                //update wait screen
+                $('#wait-screen').html(`
+                <br><b>${waitScreenText}</b>
+                <br>
+                <br>The answer was
+                <br>
+                <br>${Q[qCount].correct_answer}
+                <br>
+                <br> Next Question in <b>${waitTime}</b> seconds ...
+                `);
+        
+                //display wait screen
+                $('#wait-screen').css('display', 'block');   
+                //decrement wait time to prepare for first iteration of timer
+                waitTime--; 
+                //run wait screen timer
+                wait = setInterval(waitTimeFunction, 1000);
+        
+        
+    };
+    
+    
     //wait screen - correct, incorrect or timed out
 
     function waitTimeFunction() {
@@ -165,11 +199,9 @@ $( document ).ready(function() {
         <br> Next Question in <b>${waitTime}</b> seconds ...
         `);
 
-        
-        $('#wait-screen').css('display', 'block');
         waitTime--;
 
-        if (waitTime <= 0) {
+        if (waitTime < -1) {
             
             nextQuestion(); 
             
@@ -189,7 +221,7 @@ $( document ).ready(function() {
             
             
             qTime = qTimeLimit;
-            $('#timer-div').html('00:0' + qTime);
+            $('#timer-div').html('<h2>00:' + qTime + '</h2>');
             
             qClock = setInterval (qTimeFunction, 1000);
 
@@ -205,7 +237,7 @@ $( document ).ready(function() {
         // $('#results-screen').css('height') playing with height - set to height of main screen
         
         $('#results-screen').html(`
-        <br>Quiz Complete!
+        <br><b>Quiz Complete!</b>
         <br>You Scored:
         <br>Correct: ${correctTally}
         <br>Incorrect: ${incorrectTally}

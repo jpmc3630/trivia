@@ -1,9 +1,22 @@
+body {
+    background-color: lightblue;
+    overflow: hidden;
+    
+}
+
 .container {
     margin: 10% auto 4% auto;
     width: 595px;
     text-align: center;
-    background-color: lightgrey;
+    background-color: lightblue;
     padding: 15px;
+    
+}
+
+h4 {
+    /* font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+     */
+
 }
 
 footer{
@@ -24,31 +37,36 @@ footer{
 #timer-div {
     background-color: lightblue;
     text-align: center;
-    height: 25px;
+    min-height: 54px;
+    padding: 10px 0 0 0;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+    
 }
 
 #question-div {
-    background-color: lightgreen;
+    background-color: lightblue;
     text-align: center;
+    min-height: 60px;
+    padding: 10px 10px 10px 10px;
 
 }
 
 #answers-div {
     text-align: center;
-    background-color: lightyellow;   
+    background-color: lightblue;   
     padding: 10px 0 0 0;
 }
 
 #wait-screen {
-    margin: 10% auto 4% auto;
-    height: 300px;
+    margin: 8% auto 4% auto;
+    height: 400px;
     position: relative;
-    top: -410px;
+    top: -440px;
 
     width: 595px;
     text-align: center;
-    background-color: lightgrey;
-    padding: 15px;
+    background-color: lightblue;
+    padding: 70px 15px 15px 15px;
     display: none;
 
 }
@@ -58,14 +76,14 @@ footer{
 }
 
 #results-screen {
-    margin: 10% auto 4% auto;
-    height: 300px;
+    margin: 8% auto 4% auto;
+    height: 400px;
     position: relative;
-    top: -410px;
+    top: -440px;
 
     width: 595px;
     text-align: center;
-    background-color: lightgrey;
+    background-color: lightblue;
     padding: 15px;
     display: none;
 
