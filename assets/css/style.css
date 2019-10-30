@@ -1,6 +1,7 @@
 body {
     background-color: lightblue;
     overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 26.4px;
     
 }
 
@@ -13,9 +14,13 @@ body {
     
 }
 
+img {
+    padding:10px;
+}
+
 h4 {
-    /* font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
-     */
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+    
 
 }
 
@@ -46,7 +51,7 @@ footer{
 #question-div {
     background-color: lightblue;
     text-align: center;
-    min-height: 60px;
+    min-height: 50px;
     padding: 10px 10px 10px 10px;
 
 }
@@ -59,32 +64,46 @@ footer{
 
 #wait-screen {
     margin: 8% auto 4% auto;
-    height: 400px;
-    position: relative;
-    top: -440px;
-
+    height: 100%;
     width: 595px;
+    position: absolute;
+    top: 0px;
+
+    /* width: 595px; */
     text-align: center;
     background-color: lightblue;
-    padding: 70px 15px 15px 15px;
+    padding: 57px 15px 15px 15px;
     display: none;
+    z-index:1;
 
+
+
+
+    
 }
+
 
 #wait-screen-reason {
-    display: block;
+    display: none;
+    z-index:1;
 }
+
+
+
 
 #results-screen {
     margin: 8% auto 4% auto;
-    height: 400px;
-    position: relative;
-    top: -440px;
+    height: 100%;
+    
+    position: absolute;
+    top: 0px;
+    /* top: -440px; */
 
     width: 595px;
     text-align: center;
     background-color: lightblue;
-    padding: 15px;
+    padding: 50px 15px 15px 15px;
     display: none;
+    z-index:1;
 
 }

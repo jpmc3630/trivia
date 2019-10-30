@@ -25,7 +25,7 @@ let waitScreenText = "";
 
 //doc ready
 $( document ).ready(function() {
-    
+
     ReloadQuestions();
 
     function ReloadQuestions() {
@@ -40,12 +40,9 @@ $( document ).ready(function() {
         
         $('.start-button').css('display', 'block');
 
-        // StartGame();
-        
     });
     };
     
-
 
     // (re)start game function
     function StartGame(){
@@ -71,7 +68,6 @@ $( document ).ready(function() {
     };
     
 
-    
     function shuffleAnswers() {
 
         //shuffle correct answer into incorrect ones
@@ -127,15 +123,8 @@ $( document ).ready(function() {
     });
 
 
-    
-
-
-
-
-
     function qTimeFunction (){
             
-
         qTime--;
         $('#timer-div').html('<h2>00:0' + qTime + '</h2>');
         console.log('qTime: ' + qTime);
@@ -236,7 +225,7 @@ $( document ).ready(function() {
     function resultsScreen() {
         // $('#results-screen').css('height') playing with height - set to height of main screen
         
-        $('#results-screen').html(`
+        $('#results-screen').html(`<img src="./assets/images/general.png" style="height:200px; float:left">
         <br><b>Quiz Complete!</b>
         <br>You Scored:
         <br>Correct: ${correctTally}
